@@ -26,7 +26,7 @@ export const CardConteiner = styled.div`
 
         img {
             border-radius: 8px;
-            border: 2px solid ${(props) => props.theme['blue-dark']};
+            border: 2px solid ${(props) => props.theme['blue']};
         }
     }
 

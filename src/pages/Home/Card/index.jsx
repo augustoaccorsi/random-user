@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { CardConteiner } from './styles';
 import { FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
+import { UserContext } from '../../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const Card = ({ user }) => {
+    const { setCurrentUser } = useContext(UserContext);
+    const navigate = useNavigate();
     const userName = `${user.name.title} ${user.name.first} ${user.name.last}`;
+
+    const handleUserClick = () => {
+        setCurrentUser(user);
+        navigate('/user');
+    };
+
     return (
-        <CardConteiner>
+        <CardConteiner onClick={handleUserClick}>
             <header>
                 <img src={user.picture.medium} alt="" />
                 <h1>{userName}</h1>
