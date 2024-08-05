@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
     UserConteiner,
     NameConteiner,
@@ -8,7 +8,6 @@ import {
     AccountContainer,
 } from './styles';
 import { UserContext } from '../../context/UserContext';
-import { API } from '../../lib/axios';
 import { FaMale, FaFemale, FaGithub, FaTwitter } from 'react-icons/fa';
 import { findFlagUrlByCountryName } from 'country-flags-svg';
 import { MdOutlineMailOutline, MdOutlineLocalPhone } from 'react-icons/md';
@@ -17,24 +16,30 @@ import { LiaBirthdayCakeSolid } from 'react-icons/lia';
 import { CiLinkedin } from 'react-icons/ci';
 
 const User = () => {
-    //const {selectedUser} = useContext(UserContext);
-    const [selectedUser, setSelectedUser] = useState({});
+    const { selectedUser } = useContext(UserContext);
+    console.log(selectedUser);
+
+    debugger;
+    // const [selectedUser, setSelectedUser] = useState({});
     const [flag, setFlag] = useState('');
 
-    const fetchUsers = async () => {
-        const response = await API.get('/?results=1');
-        setSelectedUser(response.data.results[0]);
-        getCountryFlag(response.data.results[0].location.country);
-    };
+    // const fetchUsers = async () => {
+    //     const response = await API.get('/?results=1');
+    //     setSelectedUser(response.data.results[0]);
+    //     getCountryFlag(response.data.results[0].location.country);
+    // };
 
-    useEffect(() => {
-        fetchUsers();
-    }, []);
-
+    // useEffect(() => {
+    //     fetchUsers();
+    // }, []);
     const getCountryFlag = (country) => {
         const flag = findFlagUrlByCountryName(country);
         setFlag(flag);
     };
+
+    if (selectedUser?.location?.country) {
+        getCountryFlag(selectedUser.location.country);
+    }
 
     return (
         <>
@@ -89,7 +94,7 @@ const User = () => {
                         </span>
                     </footer>
                 </LocationContainer>
-                <PersonalContainer>
+                <PersonalContainer variant={selectedUser?.gender}>
                     <h1>Personal Data</h1>
                     <header>
                         <h2>Bio</h2>

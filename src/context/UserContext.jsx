@@ -18,6 +18,7 @@ const UserProvider = (props) => {
 
     const setCurrentUser = (user) => {
         setSelectedUser(user);
+        console.log(user);
     };
 
     return (

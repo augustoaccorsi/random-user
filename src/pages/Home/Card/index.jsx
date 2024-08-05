@@ -16,7 +16,7 @@ const Card = ({ user }) => {
     };
 
     return (
-        <CardConteiner onClick={handleUserClick}>
+        <CardConteiner onClick={handleUserClick} variant={user?.gender}>
             <header>
                 <img src={user.picture.medium} alt="" />
                 <h1>{userName}</h1>

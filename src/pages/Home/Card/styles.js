@@ -26,7 +26,11 @@ export const CardConteiner = styled.div`
 
         img {
             border-radius: 8px;
-            border: 2px solid ${(props) => props.theme['blue']};
+            border: 2px solid
+                ${(props) =>
+                    props.variant === 'female'
+                        ? props.theme['purple']
+                        : props.theme['blue']};
         }
     }
 
@@ -54,6 +58,10 @@ export const CardConteiner = styled.div`
     cursor: pointer;
 
     &:hover {
-        border: 2px solid ${(props) => props.theme['purple']};
+        border: 2px solid
+            ${(props) =>
+                props.variant === 'female'
+                    ? props.theme['purple']
+                    : props.theme['blue']};
     }
 `;
