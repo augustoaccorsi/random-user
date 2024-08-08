@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import {
     UserConteiner,
     NameConteiner,
@@ -9,37 +9,13 @@ import {
 } from './styles';
 import { UserContext } from '../../context/UserContext';
 import { FaMale, FaFemale, FaGithub, FaTwitter } from 'react-icons/fa';
-import { findFlagUrlByCountryName } from 'country-flags-svg';
 import { MdOutlineMailOutline, MdOutlineLocalPhone } from 'react-icons/md';
 import { format } from 'date-fns';
 import { LiaBirthdayCakeSolid } from 'react-icons/lia';
 import { CiLinkedin } from 'react-icons/ci';
 
 const User = () => {
-    const { selectedUser } = useContext(UserContext);
-    console.log(selectedUser);
-
-    debugger;
-    // const [selectedUser, setSelectedUser] = useState({});
-    const [flag, setFlag] = useState('');
-
-    // const fetchUsers = async () => {
-    //     const response = await API.get('/?results=1');
-    //     setSelectedUser(response.data.results[0]);
-    //     getCountryFlag(response.data.results[0].location.country);
-    // };
-
-    // useEffect(() => {
-    //     fetchUsers();
-    // }, []);
-    const getCountryFlag = (country) => {
-        const flag = findFlagUrlByCountryName(country);
-        setFlag(flag);
-    };
-
-    if (selectedUser?.location?.country) {
-        getCountryFlag(selectedUser.location.country);
-    }
+    const { selectedUser, flag } = useContext(UserContext);
 
     return (
         <>
